@@ -840,7 +840,7 @@
 	 *  - 'remove:<key>' (model, related collection, options)
 	 *  - 'update:<key>' (model, related model or collection, options)
 	 */
-	Backbone.RelationalModel = Backbone.Model.extend({
+	Backbone.RelationalModel = TastyPie.Model.extend({
 		relations: null, // Relation descriptions on the prototype
 		_relations: null, // Relation instances
 		_isInitialized: false,

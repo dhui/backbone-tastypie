@@ -34,7 +34,7 @@ $(document).ready(function() {
 		urlRoot: '/animal' // Missing final '/' on purpose.
 	});
 	
-	AnimalCollection = Backbone.Collection.extend({
+	AnimalCollection = TastyPie.Collection.extend({
 		urlRoot: '/animal', // Missing final '/' on purpose.
 		model: Animal
 	});
@@ -43,7 +43,7 @@ $(document).ready(function() {
 	Person = Backbone.RelationalModel.extend({});
 	
 	function initObjects() {
-		Backbone.Tastypie = {
+		TastyPie = {
 			doGetOnEmptyPostResponse: true,
 			doGetOnEmptyPutResponse: false,
 			apiKey: {
@@ -67,7 +67,7 @@ $(document).ready(function() {
 	
 	
 		test( "ApiKey sent as an extra header", function() {
-			Backbone.Tastypie.apiKey = {
+			TastyPie.apiKey = {
 				username: 'daniel',
 				key: '204db7bcfafb2deb7506b89eb3b9b715b09905c8'
 			};
@@ -113,7 +113,7 @@ $(document).ready(function() {
 		test( "No extra 'GET' on creation when 'doGetOnEmptyPostResponse' is false", function() {
 			expect( 2 );
 
-			Backbone.Tastypie.doGetOnEmptyPostResponse = false;
+			TastyPie.doGetOnEmptyPostResponse = false;
 
 			var animal = new Animal( { species: 'Turtle' } );
 			var xhr = { status: 201, getResponseHeader: function() { return '/animal/1/'; } };
@@ -152,7 +152,7 @@ $(document).ready(function() {
 		test( "Extra GET on update if the response is empty, and 'doGetOnEmptyPutResponse' is true", function() {
 			expect( 2 );
 
-			Backbone.Tastypie.doGetOnEmptyPutResponse = true;
+			TastyPie.doGetOnEmptyPutResponse = true;
 
 			var animal = new Animal( { species: 'Turtle', id: 1, 'resource_uri': '/animal/1/' } );
 			var emptyResponse = '';
@@ -174,7 +174,7 @@ $(document).ready(function() {
 		test( "No extra 'GET' on update when there is a response", function() {
 			expect( 1 );
 
-			Backbone.Tastypie.doGetOnEmptyPutResponse = true;
+			TastyPie.doGetOnEmptyPutResponse = true;
 
 			var animal = new Animal( { species: 'Turtle', id: 1, 'resource_uri': '/animal/1/' } );
 			var response = { id: 1, 'resource_uri': '/animal/1/', weight: 500 };
